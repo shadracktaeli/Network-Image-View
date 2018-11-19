@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/NetwrokImageView.iml" filepath="$PROJECT_DIR$/NetwrokImageView.iml" />
-      <module fileurl="file://$PROJECT_DIR$/networkimageview/networkimageview.iml" filepath="$PROJECT_DIR$/networkimageview/networkimageview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
     </modules>
   </component>
 </project>
