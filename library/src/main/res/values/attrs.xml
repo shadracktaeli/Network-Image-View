@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="NetworkImageView">
+        <attr name="imageUrl" format="string"/>
+        <attr name="placeholderDrawable" format="reference"/>
+        <attr name="errorDrawable" format="reference" />
+    </declare-styleable>
+</resources>
