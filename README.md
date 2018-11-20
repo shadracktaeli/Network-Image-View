@@ -34,6 +34,8 @@ Depending on your ProGuard (DexGuard) config and usage, you may need to include 
 How do I use NetworkImageView?
 -------------------
 
+> XML
+
 ```xml
 <org.shadracktaeli.networkimageview.NetworkImageView
         android:layout_width="100dp"
@@ -43,9 +45,16 @@ How do I use NetworkImageView?
         app:showProgressLoader="true"/>
 ```
 
+> Kotlin
+
 ```kotlin
 override fun onCreate(savedInstanceState: Bundle?) {
-  
+  ...
+  val networkImageView: NetworkImageView = findViewById(R.id.my_image_view);
+  val imageUrl = "https://via.placeholder.com/100x100"
+  val placeholderDrawable = R.drawale.placeholder
+  val errorDrawable = R.drawable.error
+  networkImageView.loadImage(imageUrl, placeholderDrawable, errorDrawable, showProgressLoader = true)
 }
 ```
 
