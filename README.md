@@ -54,7 +54,9 @@ override fun onCreate(savedInstanceState: Bundle?) {
   val imageUrl = "https://via.placeholder.com/100x100"
   val placeholderDrawable = R.drawale.placeholder
   val errorDrawable = R.drawable.error
-  networkImageView.loadImage(imageUrl, placeholderDrawable, errorDrawable, showProgressLoader = true)
+  val showProgressLoader = true
+  // placeholderDrawable, errorDrawable and showProgressLoader are optional in Kotlin
+  networkImageView.loadImage(imageUrl, placeholderDrawable, errorDrawable, showProgressLoader)
 }
 ```
 
