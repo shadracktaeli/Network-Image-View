@@ -35,7 +35,7 @@ class NetworkImageView @JvmOverloads constructor(
     // Cache type
     private var cacheStrategy: CacheStrategy
     // Show progress loader
-    private var showProgressLoader: Boolean
+    private var showLoader: Boolean
     // Image loading listener
     private var imageLoadingListener: ImageLoadingListener? = null
 
@@ -59,8 +59,8 @@ class NetworkImageView @JvmOverloads constructor(
         // Get cache strategy
         cacheStrategy = CacheStrategy.values()[attributes.getInt(R.styleable.NetworkImageView_cacheStrategy, DEFAULT_CACHE_STRATEGY.ordinal)]
         // Get show progress loader
-        showProgressLoader = attributes
-            .getBoolean(R.styleable.NetworkImageView_showProgressLoader, DEFAULT_SHOW_PROGRESS_LOADER)
+        showLoader = attributes
+            .getBoolean(R.styleable.NetworkImageView_showLoader, DEFAULT_SHOW_PROGRESS_LOADER)
 
         // Recycle attributes
         attributes.recycle()
@@ -97,16 +97,20 @@ class NetworkImageView @JvmOverloads constructor(
     }
 
     fun loadImage(
-            imageUrl: String, @DrawableRes placeholderDrawableRes: Int = DEFAULT_RESOURCE_VALUE, @DrawableRes errorDrawableRes: Int = DEFAULT_RESOURCE_VALUE
+            imageUrl: String,
+            @DrawableRes placeholderDrawableRes: Int = DEFAULT_RESOURCE_VALUE,
+            @DrawableRes errorDrawableRes: Int = DEFAULT_RESOURCE_VALUE,
+            showLoader: Boolean = false
     ) {
         this.imageUrl = imageUrl
         this.placeholderDrawableRes = placeholderDrawableRes
         this.errorDrawableRes = errorDrawableRes
+        this.showLoader = showLoader
         loadImage()
     }
 
     private fun showProgressBar() {
-        if (showProgressLoader) {
+        if (showLoader) {
             progressBar.visibility = View.VISIBLE
         }
     }
