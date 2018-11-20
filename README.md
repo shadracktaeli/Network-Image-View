@@ -52,7 +52,7 @@ override fun onCreate(savedInstanceState: Bundle?) {
     ...
     val networkImageView: NetworkImageView = findViewById(R.id.my_image_view)
     val imageUrl = "https://via.placeholder.com/100x100"
-    val placeholderDrawable = R.drawale.placeholder
+    val placeholderDrawable = R.drawable.placeholder
     val errorDrawable = R.drawable.error
     val showLoader = true
     // placeholderDrawable, errorDrawable and showLoader are optional in Kotlin
