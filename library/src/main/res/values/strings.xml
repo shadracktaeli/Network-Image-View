@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Network Image View</string>
+    <string name="error_blank_image_url">Please provide a valid url</string>
+    <string name="error_invalid_image_url">%s is an invalid url</string>
 </resources>

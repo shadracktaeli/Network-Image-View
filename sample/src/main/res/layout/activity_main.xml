@@ -7,9 +7,10 @@
                                              tools:context=".MainActivity">
 
     <org.shadracktaeli.networkimageview.NetworkImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         app:imageUrl="https://via.placeholder.com/100x100"
-        app:cacheStrategy="all"/>
+        app:cacheStrategy="none"
+        app:showProgressLoader="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
