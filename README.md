@@ -44,14 +44,14 @@ How do I use NetworkImageView?
 ```
 
 ```kotlin
-@Override public void onCreate(Bundle savedInstanceState) {
+override fun onCreate(savedInstanceState: Bundle?) {
   ...
   val networkImageView: NetworkImageView = findViewById(R.id.my_image_view);
   val imageUrl = "https://via.placeholder.com/100x100"
-  val placeholdeDrawable = R.drawale.placeholder
+  val placeholderDrawable = R.drawale.placeholder
   val errorDrawable = R.drawable.error
-  // placeholdeDrawable and errorDrawable are optional
-  networkImageView.loadImage(imageUrl, placeholdeDrawable, errorDrawable)
+  // placeholderDrawable, errorDrawable and showProgressLoader are optional
+  networkImageView.loadImage(imageUrl, placeholderDrawable, errorDrawable, showProgressLoader = true)
 }
 ```
 
