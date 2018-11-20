@@ -4,12 +4,12 @@
         <attr name="imageUrl" format="string" />
         <attr name="placeholderDrawable" format="reference" />
         <attr name="errorDrawable" format="reference" />
-        <attr name="cache" format="enum">
-            <enum name="none" value="1" />
-            <enum name="all" value="2" />
-            <enum name="resource" value="3" />
-            <enum name="data" value="4" />
-            <enum name="auto" value="5" />
+        <attr name="cacheStrategy" format="enum">
+            <enum name="all" value="0" />
+            <enum name="auto" value="1" />
+            <enum name="data" value="2" />
+            <enum name="none" value="3" />
+            <enum name="resource" value="4" />
         </attr>
     </declare-styleable>
 </resources>

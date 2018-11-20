@@ -9,6 +9,7 @@
     <org.shadracktaeli.networkimageview.NetworkImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:imageUrl="https://via.placeholder.com/100x100"/>
+        app:imageUrl="https://via.placeholder.com/100x100"
+        app:cacheStrategy="all"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

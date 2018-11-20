@@ -6,6 +6,7 @@ import android.util.Log
 import android.webkit.URLUtil
 import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatImageView
+import org.shadracktaeli.networkimageview.glide.CacheStrategy
 import org.shadracktaeli.networkimageview.glide.GlideApp
 
 class NetworkImageView @JvmOverloads constructor(
@@ -18,7 +19,7 @@ class NetworkImageView @JvmOverloads constructor(
     // Error drawable resource
     private var errorDrawableRes: Int
     // Cache type
-    private var cacheType: Int = DEFAULT_CACHE_TYPE
+    private var cacheStrategy: CacheStrategy
 
     init {
         val attributes = context
@@ -32,6 +33,8 @@ class NetworkImageView @JvmOverloads constructor(
         // Get error drawable resource
         errorDrawableRes = attributes
             .getResourceId(R.styleable.NetworkImageView_errorDrawable, DEFAULT_RESOURCE_VALUE)
+        // Get cache strategy
+        cacheStrategy = CacheStrategy.values()[attributes.getInt(R.styleable.NetworkImageView_cacheStrategy, DEFAULT_CACHE_STRATEGY.ordinal)]
 
         // Recycle attributes
         attributes.recycle()
@@ -57,6 +60,7 @@ class NetworkImageView @JvmOverloads constructor(
                 .load(this)
                 .placeholderDrawable(placeholderDrawableRes)
                 .errorDrawable(errorDrawableRes)
+                .diskCacheStrategy(cacheStrategy.value)
                 .into(this@NetworkImageView)
             // @formatter:on
         }
@@ -74,6 +78,6 @@ class NetworkImageView @JvmOverloads constructor(
     companion object {
         private const val TAG = "NetworkImageView"
         private const val DEFAULT_RESOURCE_VALUE = -1
-        private const val DEFAULT_CACHE_TYPE = 1
+        private val DEFAULT_CACHE_STRATEGY = CacheStrategy.NONE
     }
 }
