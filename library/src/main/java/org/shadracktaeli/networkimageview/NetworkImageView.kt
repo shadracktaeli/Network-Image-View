@@ -14,9 +14,11 @@ class NetworkImageView @JvmOverloads constructor(
     // Image url to load
     private var imageUrl: String? = null
     // Placeholder drawable resource
-    private var placeholderDrawableRes: Int = DEFAULT_RESOURCE_VALUE
+    private var placeholderDrawableRes: Int
     // Error drawable resource
-    private var errorDrawableRes: Int = DEFAULT_RESOURCE_VALUE
+    private var errorDrawableRes: Int
+    // Cache type
+    private var cacheType: Int = DEFAULT_CACHE_TYPE
 
     init {
         val attributes = context
@@ -72,5 +74,6 @@ class NetworkImageView @JvmOverloads constructor(
     companion object {
         private const val TAG = "NetworkImageView"
         private const val DEFAULT_RESOURCE_VALUE = -1
+        private const val DEFAULT_CACHE_TYPE = 1
     }
 }

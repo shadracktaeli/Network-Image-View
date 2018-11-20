@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="NetworkImageView">
-        <attr name="imageUrl" format="string"/>
-        <attr name="placeholderDrawable" format="reference"/>
+        <attr name="imageUrl" format="string" />
+        <attr name="placeholderDrawable" format="reference" />
         <attr name="errorDrawable" format="reference" />
+        <attr name="cache" format="enum">
+            <enum name="none" value="1" />
+            <enum name="all" value="2" />
+            <enum name="resource" value="3" />
+            <enum name="data" value="4" />
+            <enum name="auto" value="5" />
+        </attr>
     </declare-styleable>
 </resources>
