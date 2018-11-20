@@ -15,22 +15,6 @@ dependencies {
 }
 ```
 
-ProGuard
---------
-Depending on your ProGuard (DexGuard) config and usage, you may need to include the following lines in your proguard.cfg:
-
-```pro
--keep public class * implements com.bumptech.glide.module.GlideModule
--keep public class * extends com.bumptech.glide.module.AppGlideModule
--keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
-  **[] $VALUES;
-  public *;
-}
-
-# for DexGuard only
--keepresourcexmlelements manifest/application/meta-data@value=GlideModule
-```
-
 How do I use NetworkImageView?
 -------------------
 
@@ -48,7 +32,7 @@ How do I use NetworkImageView?
 > Kotlin
 
 ``` kotlin
-override fun onCreate(savedInstanceState: Bundle?) {
+override fun onCreate (savedInstanceState: Bundle?) {
     ...
     val networkImageView: NetworkImageView = findViewById(R.id.my_image_view)
     val imageUrl = "https://via.placeholder.com/100x100"
