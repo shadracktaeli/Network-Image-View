@@ -35,7 +35,6 @@ How do I use NetworkImageView?
 -------------------
 
 ```xml
-// For a simple view:
 <org.shadracktaeli.networkimageview.NetworkImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -43,6 +42,25 @@ How do I use NetworkImageView?
         app:cacheStrategy="none"
         app:showProgressLoader="true"/>
 ```
+
+```kotlin
+@Override public void onCreate(Bundle savedInstanceState) {
+  ...
+  val networkImageView: NetworkImageView = findViewById(R.id.my_image_view);
+  val imageUrl = "https://via.placeholder.com/100x100"
+  val placeholdeDrawable = R.drawale.placeholder
+  val errorDrawable = R.drawable.error
+  // placeholdeDrawable and errorDrawable are optional
+  networkImageView.loadImage(imageUrl, placeholdeDrawable, errorDrawable)
+}
+```
+
+Compatibility
+-------------
+
+ * **Minimum Android SDK**: NetworkImageView v1 requires a minimum API level of 21.
+ * **Compile Android SDK**: NetworkImageView v1 requires you to compile against API 28 or later.
+
 ## Built With
 
 * [Glide](https://bumptech.github.io/glide/) - Image loader used
