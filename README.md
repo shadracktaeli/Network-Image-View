@@ -47,7 +47,7 @@ How do I use NetworkImageView?
 
 > Kotlin
 
-```kotlin
+``` kotlin
 override fun onCreate(savedInstanceState: Bundle?) {
     ...
     val networkImageView: NetworkImageView = findViewById(R.id.my_image_view)
