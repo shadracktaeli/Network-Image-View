@@ -1,5 +1,7 @@
 # Network-ImageView
 
+NetworkImageView is an Android library that simplifies the process of loading images into image views and reduces Glide's boilerplate code.
+
 ## Download
 
 Gradle:
@@ -25,7 +27,7 @@ How do I use NetworkImageView?
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:imageUrl="https://via.placeholder.com/100x100"
-        app:cacheStrategy="none"
+        app:cacheStrategy="all|auto|data|none|resource"
         app:showProgressLoader="true"/>
 ```
 
@@ -39,6 +41,8 @@ override fun onCreate (savedInstanceState: Bundle?) {
     val placeholderDrawable = R.drawable.placeholder
     val errorDrawable = R.drawable.error
     val showLoader = true
+    val cacheStrategy = CacheStrategy.ALL | AUTO | DATA | NONE | RESOURCE
+    networkImageView.cacheStrategy = cacheStrategy
     // placeholderDrawable, errorDrawable and showLoader are optional in Kotlin
     networkImageView.loadImage(imageUrl, placeholderDrawable, errorDrawable, showLoader)
 }
