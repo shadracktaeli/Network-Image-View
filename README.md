@@ -28,7 +28,7 @@ How do I use NetworkImageView?
         android:layout_height="100dp"
         app:imageUrl="https://via.placeholder.com/100x100"
         app:cacheStrategy="all|auto|data|none|resource"
-        app:showProgressLoader="true"/>
+        app:showLoader="true"/>
 ```
 
 > Kotlin
