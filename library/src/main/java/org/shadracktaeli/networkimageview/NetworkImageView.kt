@@ -15,13 +15,15 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import org.shadracktaeli.networkimageview.R.attr.imageUrl
 import org.shadracktaeli.networkimageview.glide.CacheStrategy
 import org.shadracktaeli.networkimageview.glide.GlideApp
 import org.shadracktaeli.networkimageview.glide.ImageLoadingListener
 
 class NetworkImageView @JvmOverloads constructor(
         context: Context, attributeSet: AttributeSet? = null
-) : FrameLayout(context, attributeSet), RequestListener<Drawable> {
+) : FrameLayout(context, attributeSet) {
+
     // Views
     private val imageView: ImageView
     private val progressBar: ProgressBar
@@ -29,13 +31,13 @@ class NetworkImageView @JvmOverloads constructor(
     // Image url to load
     private var imageUrl: String?
     // Placeholder drawable resource
-    private var placeholderDrawableRes: Int
+    var placeholderDrawableRes: Int
     // Error drawable resource
-    private var errorDrawableRes: Int
+    var errorDrawableRes: Int
     // Cache type
-    private var cacheStrategy: CacheStrategy
+    var cacheStrategy: CacheStrategy
     // Show progress loader
-    private var showProgressLoader: Boolean
+    private var showLoader: Boolean
     // Image loading listener
     private var imageLoadingListener: ImageLoadingListener? = null
 
@@ -59,8 +61,8 @@ class NetworkImageView @JvmOverloads constructor(
         // Get cache strategy
         cacheStrategy = CacheStrategy.values()[attributes.getInt(R.styleable.NetworkImageView_cacheStrategy, DEFAULT_CACHE_STRATEGY.ordinal)]
         // Get show progress loader
-        showProgressLoader = attributes
-            .getBoolean(R.styleable.NetworkImageView_showProgressLoader, DEFAULT_SHOW_PROGRESS_LOADER)
+        showLoader = attributes
+            .getBoolean(R.styleable.NetworkImageView_showLoader, DEFAULT_SHOW_IMAGE_LOADER)
 
         // Recycle attributes
         attributes.recycle()
@@ -87,26 +89,48 @@ class NetworkImageView @JvmOverloads constructor(
             // @formatter:off
             GlideApp.with(context)
                 .load(this)
-                .listener(this@NetworkImageView)
-                .placeholderDrawable(placeholderDrawableRes)
-                .errorDrawable(errorDrawableRes)
-                .diskCacheStrategy(cacheStrategy.value)
-                .into(imageView)
+                .listener(object : RequestListener<Drawable> {
+                    override fun onLoadFailed(
+                            e: GlideException?,
+                            model: Any?,
+                            target: Target<Drawable>?,
+                            isFirstResource: Boolean
+                    ): Boolean {
+                        hideProgressBar()
+                        imageLoadingListener?.onLoadFailed(e)
+                        return false
+                    }
+
+                    override fun onResourceReady(
+                            resource: Drawable?,
+                            model: Any?,
+                            target: Target<Drawable>?,
+                            dataSource: DataSource?,
+                            isFirstResource: Boolean
+                    ): Boolean {
+                        hideProgressBar()
+                        imageLoadingListener?.onLoaded()
+                        return false
+                    }
+                }).placeholderDrawable(placeholderDrawableRes).errorDrawable(errorDrawableRes)
+                .diskCacheStrategy(cacheStrategy.value).into(imageView)
             // @formatter:on
         }
     }
 
     fun loadImage(
-            imageUrl: String, @DrawableRes placeholderDrawableRes: Int = DEFAULT_RESOURCE_VALUE, @DrawableRes errorDrawableRes: Int = DEFAULT_RESOURCE_VALUE
+            imageUrl: String, @DrawableRes placeholderDrawableRes: Int = DEFAULT_RESOURCE_VALUE, @DrawableRes errorDrawableRes: Int = DEFAULT_RESOURCE_VALUE,
+            showLoader: Boolean = false
     ) {
         this.imageUrl = imageUrl
         this.placeholderDrawableRes = placeholderDrawableRes
         this.errorDrawableRes = errorDrawableRes
+        this.showLoader = showLoader
         loadImage()
     }
 
     private fun showProgressBar() {
-        if (showProgressLoader) {
+        if (showLoader) {
             progressBar.visibility = View.VISIBLE
         }
     }
@@ -115,30 +139,10 @@ class NetworkImageView @JvmOverloads constructor(
         progressBar.visibility = View.GONE
     }
 
-    override fun onLoadFailed(
-            e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean
-    ): Boolean {
-        hideProgressBar()
-        imageLoadingListener?.onLoadFailed(e)
-        return false
-    }
-
-    override fun onResourceReady(
-            resource: Drawable?,
-            model: Any?,
-            target: Target<Drawable>?,
-            dataSource: DataSource?,
-            isFirstResource: Boolean
-    ): Boolean {
-        hideProgressBar()
-        imageLoadingListener?.onLoaded()
-        return false
-    }
-
     companion object {
         private const val TAG = "NetworkImageView"
         private const val DEFAULT_RESOURCE_VALUE = -1
         private val DEFAULT_CACHE_STRATEGY = CacheStrategy.NONE
-        private const val DEFAULT_SHOW_PROGRESS_LOADER = false
+        private const val DEFAULT_SHOW_IMAGE_LOADER = false
     }
 }

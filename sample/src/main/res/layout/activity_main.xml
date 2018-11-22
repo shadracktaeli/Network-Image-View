@@ -11,6 +11,6 @@
         android:layout_height="100dp"
         app:imageUrl="https://via.placeholder.com/100x100"
         app:cacheStrategy="none"
-        app:showProgressLoader="true"/>
+        app:showLoader="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

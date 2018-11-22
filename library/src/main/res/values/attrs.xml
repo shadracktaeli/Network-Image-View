@@ -11,6 +11,6 @@
             <enum name="none" value="3" />
             <enum name="resource" value="4" />
         </attr>
-        <attr name="showProgressLoader" format="boolean" />
+        <attr name="showLoader" format="boolean" />
     </declare-styleable>
 </resources>

@@ -4,19 +4,20 @@ buildscript {
     ext {
         // SDK and tools
         compileSdkVersion = 28
-        compileSdkVersion = 28
         minSdkVersion = 21
         targetSdkVersion = 28
 
         // App Dependencies
         annotationsVersion = '16.0.1'
         appCompatVersion = '1.0.2'
+        bintrayPluginVersion = '1.7.3'
         constraintLayoutVersion = '1.1.3'
         espressoVersion = '3.1.0-alpha1'
         glideVersion = '4.8.0'
         gradleVersion = '3.3.0-alpha09'
         junitVersion = '4.12'
         kotlinVersion = '1.3.10'
+        mavenGradlePluginVersion = '1.5'
         runnerVersion = '1.1.0-alpha1'
     }
     repositories {
@@ -26,6 +27,8 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$gradleVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$bintrayPluginVersion"
+        classpath "com.github.dcendents:android-maven-gradle-plugin:$mavenGradlePluginVersion"
     }
 }
 
@@ -33,6 +36,9 @@ allprojects {
     repositories {
         google()
         jcenter()
+    }
+    tasks.withType(Javadoc).all {
+        enabled = false
     }
 }
 

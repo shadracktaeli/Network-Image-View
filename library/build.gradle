@@ -2,6 +2,33 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:1.1.0"
+    }
+}
+
+ext {
+    bintrayRepo = 'NetworkImageView'
+    bintrayName = 'networkimageview'
+    publishedGroupId = 'org.shadracktaeli'
+    libraryName = 'networkimageview'
+    artifact = 'networkimageview'
+    libraryDescription = 'Image loader helper'
+    siteUrl = 'https://github.com/shadracktaeli/Network-ImageView'
+    gitUrl = 'https://github.com/shadracktaeli/Network-ImageView.git'
+    libraryVersion = '1.0.0'
+    developerId = 'shadrack'
+    developerName = 'Shadrack Taeli'
+    developerEmail = 'shadracktl40@gmail.com'
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
 android {
     compileSdkVersion rootProject.compileSdkVersion
 
@@ -48,3 +75,6 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     kapt "com.github.bumptech.glide:compiler:$glideVersion"
 }
+
+apply from: 'https://raw.githubusercontent.com/numetriclabz/jcenter/master/installv.gradle'
+apply from: 'https://raw.githubusercontent.com/numetriclabz/jcenter/master/bintrayv.gradle'
