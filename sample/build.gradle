@@ -43,6 +43,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
 
-    // Add library dependency
-    api project(":library")
+    // NetworkImageView
+    implementation 'org.shadracktaeli:network-imageview:1.0.0'
 }
