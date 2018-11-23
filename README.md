@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-  implementation 'org.shadracktaeli:networki-mageview:1.0.0'
+  implementation 'org.shadracktaeli:network-imageview:1.0.0'
 }
 ```
 
