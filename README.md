@@ -8,12 +8,12 @@ Gradle:
 
 ```gradle
 repositories {
-  mavenCentral()
   google()
+  jcenter()
 }
 
 dependencies {
-  implementation 'org.shadracktaeli:networkimageview:1.0.0'
+  implementation 'org.shadracktaeli:networki-mageview:1.0.0'
 }
 ```
 
@@ -60,7 +60,7 @@ Compatibility
 
 ## Authors
 
-* **Shadrack Taeli** - *Initial work* - [NetworkImageView](https://github.com/shadracktaeli/Network-ImageView)
+* **Shadrack Taeli** - *Initial work* - [NetworkImageView](https://github.com/shadracktaeli/NetworkImageView)
 
 ## License
 
