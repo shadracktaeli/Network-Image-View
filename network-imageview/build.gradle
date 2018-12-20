@@ -20,7 +20,7 @@ ext {
     libraryDescription = 'Image loader helper'
     siteUrl = 'https://github.com/shadracktaeli/Network-ImageView'
     gitUrl = 'https://github.com/shadracktaeli/Network-ImageView.git'
-    libraryVersion = '1.0.0'
+    libraryVersion = '1.0.1'
     developerId = 'shadrack '
     developerName = 'Shadrack Taeli'
     developerEmail = 'shadracktl40@gmail.com'
@@ -36,7 +36,7 @@ android {
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
-        versionName "1.0.0"
+        versionName "1.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

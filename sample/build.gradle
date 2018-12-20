@@ -24,25 +24,19 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     // JUnit
     testImplementation "junit:junit:$junitVersion"
-
     // Instrumentation tests
     androidTestImplementation "androidx.test:runner:$runnerVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
-
     // Annotations
-    implementation("org.jetbrains:annotations:$annotationsVersion")
-
+    implementation "org.jetbrains:annotations:$annotationsVersion"
     // UI
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
-
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
-
-    // NetworkImageView
-    implementation 'org.shadracktaeli:network-imageview:1.0.0'
+    implementation project(':network-imageview')
 }

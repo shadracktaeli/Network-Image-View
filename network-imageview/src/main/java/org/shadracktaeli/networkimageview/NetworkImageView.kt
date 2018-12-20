@@ -11,13 +11,14 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.annotation.DrawableRes
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import org.shadracktaeli.networkimageview.R.attr.imageUrl
 import org.shadracktaeli.networkimageview.glide.CacheStrategy
-import org.shadracktaeli.networkimageview.glide.GlideApp
 import org.shadracktaeli.networkimageview.glide.ImageLoadingListener
 
 class NetworkImageView @JvmOverloads constructor(
@@ -54,10 +55,10 @@ class NetworkImageView @JvmOverloads constructor(
         imageUrl = attributes.getString(R.styleable.NetworkImageView_imageUrl)
         // Get placeholder drawable resource
         placeholderDrawableRes = attributes
-            .getResourceId(R.styleable.NetworkImageView_placeholderDrawable, DEFAULT_RESOURCE_VALUE)
+            .getResourceId(R.styleable.NetworkImageView_placeholderDrawable, DEFAULT_PLACEHOLDER_VALUE)
         // Get error drawable resource
         errorDrawableRes = attributes
-            .getResourceId(R.styleable.NetworkImageView_errorDrawable, DEFAULT_RESOURCE_VALUE)
+            .getResourceId(R.styleable.NetworkImageView_errorDrawable, DEFAULT_PLACEHOLDER_VALUE)
         // Get cache strategy
         cacheStrategy = CacheStrategy.values()[attributes.getInt(R.styleable.NetworkImageView_cacheStrategy, DEFAULT_CACHE_STRATEGY.ordinal)]
         // Get show progress loader
@@ -66,7 +67,14 @@ class NetworkImageView @JvmOverloads constructor(
 
         // Recycle attributes
         attributes.recycle()
+    }
 
+    fun setImageUrl(imageUrl: String) {
+        this.imageUrl = imageUrl
+    }
+
+    override fun onFinishInflate() {
+        super.onFinishInflate()
         // Load image
         loadImage()
     }
@@ -87,7 +95,7 @@ class NetworkImageView @JvmOverloads constructor(
             showProgressBar()
 
             // @formatter:off
-            GlideApp.with(context)
+            Glide.with(context)
                 .load(this)
                 .listener(object : RequestListener<Drawable> {
                     override fun onLoadFailed(
@@ -112,14 +120,19 @@ class NetworkImageView @JvmOverloads constructor(
                         imageLoadingListener?.onLoaded()
                         return false
                     }
-                }).placeholderDrawable(placeholderDrawableRes).errorDrawable(errorDrawableRes)
-                .diskCacheStrategy(cacheStrategy.value).into(imageView)
+                })
+                .apply(RequestOptions()
+                    .placeholder(placeholderDrawableRes)
+                    .error(errorDrawableRes)
+                    .diskCacheStrategy(cacheStrategy.value)
+                )
+                .into(imageView)
             // @formatter:on
         }
     }
 
     fun loadImage(
-            imageUrl: String, @DrawableRes placeholderDrawableRes: Int = DEFAULT_RESOURCE_VALUE, @DrawableRes errorDrawableRes: Int = DEFAULT_RESOURCE_VALUE,
+            imageUrl: String, @DrawableRes placeholderDrawableRes: Int = DEFAULT_PLACEHOLDER_VALUE, @DrawableRes errorDrawableRes: Int = DEFAULT_PLACEHOLDER_VALUE,
             showLoader: Boolean = false
     ) {
         this.imageUrl = imageUrl
@@ -141,7 +154,7 @@ class NetworkImageView @JvmOverloads constructor(
 
     companion object {
         private const val TAG = "NetworkImageView"
-        private const val DEFAULT_RESOURCE_VALUE = -1
+        private val DEFAULT_PLACEHOLDER_VALUE = R.color.network_image_view_placeholder_color
         private val DEFAULT_CACHE_STRATEGY = CacheStrategy.NONE
         private const val DEFAULT_SHOW_IMAGE_LOADER = false
     }
