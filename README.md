@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-  implementation 'org.shadracktaeli:network-imageview:1.0.1'
+  implementation 'org.shadracktaeli:network-imageview:1.0.2'
 }
 ```
 
