@@ -2,8 +2,15 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 android {
+    signingConfigs {
+        config {
+            keyAlias 'sample'
+            keyPassword 'sample'
+            storeFile file('sample.keystore')
+            storePassword 'sample'
+        }
+    }
     compileSdkVersion rootProject.compileSdkVersion
-
     defaultConfig {
         applicationId "org.shadracktaeli.sample"
         minSdkVersion rootProject.minSdkVersion
@@ -13,14 +20,16 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
+            jniDebuggable true
+
+            signingConfig signingConfigs.config
         }
     }
-
 }
 
 dependencies {
