@@ -27,3 +27,9 @@
   **[] $VALUES;
   public *;
 }
+-keep class !com.bumptech.glide.repackaged.**,com.bumptech.glide.**
+# Keep the entry point to this library, see META-INF\services\javax.annotation.processing.Processor
+-keep class com.bumptech.glide.annotation.compiler.GlideAnnotationProcessor
+
+# Reflective accesses in com.google.common.util.concurrent.* and some others
+-dontnote com.bumptech.glide.repackaged.com.google.common.**

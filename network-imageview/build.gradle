@@ -5,9 +5,10 @@ apply plugin: 'kotlin-kapt'
 buildscript {
     repositories {
         mavenCentral()
+        google()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:1.1.0"
+        classpath 'com.android.tools.build:gradle:3.3.1'
     }
 }
 
@@ -20,7 +21,7 @@ ext {
     libraryDescription = 'Image loader helper'
     siteUrl = 'https://github.com/shadracktaeli/Network-ImageView'
     gitUrl = 'https://github.com/shadracktaeli/Network-ImageView.git'
-    libraryVersion = '1.0.1'
+    libraryVersion = '1.0.2'
     developerId = 'shadrack '
     developerName = 'Shadrack Taeli'
     developerEmail = 'shadracktl40@gmail.com'
@@ -36,7 +37,7 @@ android {
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
-        versionName "1.0.1"
+        versionName "1.0.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
