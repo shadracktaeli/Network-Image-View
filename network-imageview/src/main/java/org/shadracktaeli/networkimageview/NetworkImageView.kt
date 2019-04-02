@@ -2,6 +2,7 @@ package org.shadracktaeli.networkimageview
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
@@ -76,21 +77,23 @@ class NetworkImageView @JvmOverloads constructor(
     override fun onFinishInflate() {
         super.onFinishInflate()
         // Load image
-        loadImage()
+        loadImageInternal()
     }
 
     /**
      * Loads an image into [NetworkImageView] with the specified [imageUrl]
      */
-    private fun loadImage() {
-        imageUrl?.apply {
-            // Check if imageUrl is a valid url
-            if (this.isBlank() || !URLUtil.isValidUrl(this)) {
-                val errorMessageRes = if (this.isBlank()) R.string.error_blank_image_url else R.string.error_invalid_image_url
-                Log.e(TAG, context.getString(errorMessageRes))
-                return
-            }
+    private fun loadImageInternal() {
+        // Check if imageUrl is a valid url
+        if (TextUtils.isEmpty(imageUrl) || !URLUtil.isValidUrl(imageUrl)) {
+            val errorMessageRes = if (TextUtils.isEmpty(imageUrl)) R.string.error_blank_image_url else R.string.error_invalid_image_url
+            Log.e(TAG, context.getString(errorMessageRes))
+            // Show error placeholder
+            imageView.setImageResource(errorDrawableRes)
+            return
+        }
 
+        imageUrl?.apply {
             // Show loading progress
             showProgressBar()
 
@@ -139,7 +142,7 @@ class NetworkImageView @JvmOverloads constructor(
         this.placeholderDrawableRes = placeholderDrawableRes
         this.errorDrawableRes = errorDrawableRes
         this.showLoader = showLoader
-        loadImage()
+        loadImageInternal()
     }
 
     private fun showProgressBar() {
