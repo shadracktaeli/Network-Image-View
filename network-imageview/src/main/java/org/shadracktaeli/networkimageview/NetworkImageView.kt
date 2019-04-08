@@ -128,6 +128,7 @@ class NetworkImageView @JvmOverloads constructor(
                     .placeholder(placeholderDrawableRes)
                     .error(errorDrawableRes)
                     .diskCacheStrategy(cacheStrategy.value)
+                    .skipMemoryCache(true)
                 )
                 .into(imageView)
             // @formatter:on
